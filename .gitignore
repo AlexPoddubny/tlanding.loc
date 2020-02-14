@@ -4,3 +4,10 @@
 Homestead.yaml
 Homestead.json
 .env
+'.idea' 
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/tlanding.loc.iml
+/.idea/vcs.xml
