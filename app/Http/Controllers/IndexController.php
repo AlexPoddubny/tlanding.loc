@@ -9,6 +9,7 @@ use App\Page;
 use App\People;
 use App\Portfolio;
 use App\Service;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -17,8 +18,12 @@ class IndexController extends Controller
 	{
 		$pages = Page::all();
 		$peoples = People::all();
-		$portfolios = Portfolio::take(3)->get();
+		$portfolios = Portfolio::all();
 		$services = Service::all();
+		
+		$tags = Portfolio::distinct()->pluck('filter');
+//		dump($tags);
+		
 		$menu = [];
 		foreach ($pages as $page){
 			$item['title'] = $page->name;
@@ -31,8 +36,8 @@ class IndexController extends Controller
 			$item['alias'] = strtolower($menuitem);
 			$menu[] = $item;
 		}
-//		dump($pages);
-		return view('site.index', compact('menu', 'pages', 'peoples', 'portfolios', 'services'));
+		return view('site.index', compact('menu', 'pages', 'peoples',
+			'portfolios', 'services', 'tags'));
 	}
 	
 }

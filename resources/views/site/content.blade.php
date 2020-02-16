@@ -62,7 +62,7 @@
                     @if($k % 3 == 0)
                     <div class="row {{ ($k != 0) ? 'borderTop' : ''}}">
                     @endif
-                        <div class="col-lg-4 {{ ($k % 3 != 0) ? 'borderLeft' : ''}}">
+                        <div class="col-lg-4 {{ ($k % 3 != 0) ? 'borderLeft' : '' }} {{ ($k > 2) ? 'mrgTop' : '' }}">
                             <div class="service_block">
                                 <div class="service_icon delay-03s animated wow  zoomIn">
                                     <span><i class="fa {{ $service->icon }}"></i></span></div>
@@ -80,7 +80,7 @@
 <!--Service-->
 @endif
 
-
+@if(isset($portfolios) && is_object($portfolios))
 <!-- Portfolio -->
 <section id="portfolio" class="content">
 
@@ -100,143 +100,43 @@
 
     <!-- Portfolio Filters -->
     <div class="portfolio">
-
+        @if(isset($tags))
         <div id="filters" class="sixteen columns">
             <ul class="clearfix">
+
                 <li><a id="all" href="#" data-filter="*" class="active">
                         <h5>All</h5>
                     </a></li>
-                <li><a class="" href="#" data-filter=".prototype">
-                        <h5>Prototype</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".design">
-                        <h5>Design</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".android">
-                        <h5>Android</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".appleIOS">
-                        <h5>Apple IOS</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".web">
-                        <h5>Web App</h5>
-                    </a></li>
+                @foreach($tags as $tag)
+                <li><a class="" href="#" data-filter=".{{ $tag }}">
+                        <h5>{{ $tag }}</h5>
+                    </a>
+                </li>
+                @endforeach
             </ul>
         </div>
+        @endif
         <!--/Portfolio Filters -->
 
         <!-- Portfolio Wrapper -->
         <div class="isotope fadeInLeft animated wow"
              style="position: relative; overflow: hidden; height: 480px;"
              id="portfolio_wrapper">
-
+            @foreach($portfolios as $portfolio)
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four   appleIOS isotope-item">
+                 class="portfolio-item one-four {{ $portfolio->filter }} isotope-item">
                 <div class="portfolio_img">
-                    <img src="{{ asset('assets/img/portfolio_pic1.jpg') }}"
-                         alt="Portfolio 1"
-                    >
+                    {!! Html::image('assets/img/' . $portfolio->images, '', ['alt' => $portfolio->name]) !!}
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
-                        <h4 class="project_name">SMS Mobile App</h4>
+                        <h4 class="project_name">{{ $portfolio->name }}</h4>
                     </div>
                 </div>
             </div>
             <!--/Portfolio Item -->
-
-            <!-- Portfolio Item-->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic2.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Finance App</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design  isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic3.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">GPS Concept</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item-->
-
-            <!-- Portfolio Item-->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  android  prototype web isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic4.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Shopping</h4>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic5.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Managment</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  web isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic6.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">iPhone</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item  -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design web isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic7.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Nexus Phone</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four   android isotope-item">
-                <div class="portfolio_img"><img src="img/portfolio_pic8.jpg"
-                                                alt="Portfolio 1"></div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Android</h4>
-                    </div>
-                </div>
-                </a> </div>
-            <!--/Portfolio Item -->
-
+            @endforeach
         </div>
         <!--/Portfolio Wrapper -->
 
@@ -254,17 +154,20 @@
 
 </section>
 <!--/Portfolio -->
-
+@endif
+@if(isset($peoples) && is_object($peoples))
 <section class="page_section team" id="team"><!--main-section team-start-->
     <div class="container">
         <h2>Team</h2>
         <h6>Lorem ipsum dolor sit amet, consectetur adipiscing.</h6>
         <div class="team_section clearfix">
+            @foreach($peoples as $k => $people)
+            @php $v = $k * 3 + 3; @endphp
             <div class="team_area">
-                <div class="team_box wow fadeInDown delay-03s">
+                <div class="team_box wow fadeInDown delay-0{{ $v }}s">
                     <div class="team_box_shadow"><a
                                 href="javascript:void(0)"></a></div>
-                    <img src="img/team_pic1.jpg" alt="">
+                    {!! Html::image('assets/img/' . $people->images, '', ['alt' => $people->name]) !!}
                     <ul>
                         <li><a href="javascript:void(0)"
                                class="fa fa-twitter"></a></li>
@@ -276,63 +179,16 @@
                                class="fa fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Tom Rensed</h3>
-                <span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-                <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Proin consequat sollicitudin
-                    cursus. Dolor sit amet, consectetur adipiscing elit proin
-                    consequat.</p>
+                <h3 class="wow fadeInDown delay-0{{ $v }}s">{{ $people->name }}</h3>
+                <span class="wow fadeInDown delay-0{{ $v }}s">{{ $people->position }}</span>
+                <p class="wow fadeInDown delay-0{{ $v }}">{{ $people->bio }}</p>
             </div>
-            <div class="team_area">
-                <div class="team_box  wow fadeInDown delay-06s">
-                    <div class="team_box_shadow"><a
-                                href="javascript:void(0)"></a></div>
-                    <img src="img/team_pic2.jpg" alt="">
-                    <ul>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-twitter"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-facebook"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-pinterest"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-06s">Kathren Mory</h3>
-                <span class="wow fadeInDown delay-06s">Vice President</span>
-                <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Proin consequat sollicitudin
-                    cursus. Dolor sit amet, consectetur adipiscing elit proin
-                    consequat.</p>
-            </div>
-            <div class="team_area">
-                <div class="team_box wow fadeInDown delay-09s">
-                    <div class="team_box_shadow"><a
-                                href="javascript:void(0)"></a></div>
-                    <img src="img/team_pic3.jpg" alt="">
-                    <ul>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-twitter"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-facebook"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-pinterest"></a></li>
-                        <li><a href="javascript:void(0)"
-                               class="fa fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-09s">Lancer Jack</h3>
-                <span class="wow fadeInDown delay-09s">Senior Manager</span>
-                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Proin consequat sollicitudin
-                    cursus. Dolor sit amet, consectetur adipiscing elit proin
-                    consequat.</p>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
 <!--/Team-->
+@endif
 <!--Footer-->
 <footer class="footer_wrapper" id="contact">
     <div class="container">
