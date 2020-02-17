@@ -242,19 +242,30 @@
                 </div>
                 <div class="col-lg-8 wow fadeInLeft delay-06s">
                     <div class="form">
-                        <input class="input-text" type="text" name=""
-                               value="Your Name *"
-                               onFocus="if(this.value==this.defaultValue)this.value='';"
-                               onBlur="if(this.value=='')this.value=this.defaultValue;">
-                        <input class="input-text" type="text" name=""
-                               value="Your E-mail *"
-                               onFocus="if(this.value==this.defaultValue)this.value='';"
-                               onBlur="if(this.value=='')this.value=this.defaultValue;">
-                        <textarea class="input-text text-area" cols="0" rows="0"
-                                  onFocus="if(this.value==this.defaultValue)this.value='';"
-                                  onBlur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
-                        <input class="input-btn" type="submit"
-                               value="send message">
+                        {!! Form::open(['url' => route('home') . '#contact']) !!}
+                        @php
+                            echo Form::text('name', '', [
+                                'placeholder' => 'Your Name *',
+                                'class' => 'input-text',
+                                'type' => 'text',
+                            ]);
+                            echo Form::text('email', '', [
+                                'placeholder' => 'Your E-mail *',
+                                'class' => 'input-text',
+                                'type' => 'text',
+                            ]);
+                            echo Form::text('text', '', [
+                                'placeholder' => 'Your Message *',
+                                'class' => 'input-text text-area',
+                                'type' => 'text',
+                                'cols' => 0,
+                                'rows' => 0,
+                            ]);
+                            echo Form::submit('Send Message', [
+                                'class' => 'input-btn'
+                            ]);
+                        @endphp
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
