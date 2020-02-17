@@ -10,7 +10,7 @@
                                 <div class="col-lg-5 col-sm-7">
                                     <div class="top_left_cont zoomIn wow animated">
                                         {!! $page->text !!}
-                                        <a href="#services" class="read_more2">Read more</a>
+                                        <a href="{{ route('page', ['alias' => $page->alias]) }}" class="read_more2">Read more</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-7 col-sm-5">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="work_bottom">
                                         <span>Want to know more..</span>
-                                        <a href="#contact" class="contact_btn">Contact Us
+                                        <a href="{{ route('page', ['alias' => $page->alias]) }}" class="contact_btn">Contact Us
                                         </a>
                                     </div>
                                 </div>
