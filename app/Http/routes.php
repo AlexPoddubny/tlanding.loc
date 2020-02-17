@@ -37,6 +37,10 @@ Route::group([
 	], function(){
 		Route::get('/', function (){
 			//
+			if (view()->exists('admin.index')){
+				$data = ['title' => 'Admin page'];
+				return view('admin.index', $data);
+			}
 		});
 		//admin/pages
 		Route::group([
@@ -136,3 +140,7 @@ Route::group([
 		);
 	}
 );
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
