@@ -13,6 +13,10 @@
 
     <div id="filters" class="sixteen columns">
         <ul style="padding:0px 0px 0px 0px">
+            <li><a  href="{{route('home')}}">
+                    <h5>Home</h5>
+                </a>
+            </li>
             <li><a  href="{{route('pages')}}">
                     <h5>Страницы</h5>
                 </a>
@@ -26,6 +30,9 @@
             <li><a href="{{route('services')}}">
                     <h5>Сервисы</h5>
                 </a>
+            </li>
+            <li>
+                <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i><h5>Logout</h5></a>
             </li>
         </ul>
     </div>

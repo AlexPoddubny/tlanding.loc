@@ -21,6 +21,9 @@
                             <a href="#{{ $item['alias'] }}" class="scroll-link">{{ $item['title'] }}</a>
                         </li>
                         @endforeach
+                        <li>
+                            <a href="/admin" class="scroll-link">Admin</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
