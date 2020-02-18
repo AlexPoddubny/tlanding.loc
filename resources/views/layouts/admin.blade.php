@@ -21,18 +21,24 @@
 
 
     @if (count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible show">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 @endforeach
             </ul>
         </div>
     @endif
 
     @if (session('status'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible show">
             {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 </header>

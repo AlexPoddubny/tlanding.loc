@@ -37,7 +37,7 @@ class PagesAddController extends Controller
 			$page->fill($input);
 			
 			if($page->save()){
-				redirect('admin')->with('status', 'Page added');
+				return redirect('admin')->with('status', 'Page added');
 			}
 			
 		}
