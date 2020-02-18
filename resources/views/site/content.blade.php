@@ -243,28 +243,26 @@
                 <div class="col-lg-8 wow fadeInLeft delay-06s">
                     <div class="form">
                         {!! Form::open(['url' => route('home') . '#contact']) !!}
-                        @php
-                            echo Form::text('name', '', [
+                        {!!Form::text('name', '', [
                                 'placeholder' => 'Your Name *',
                                 'class' => 'input-text',
                                 'type' => 'text',
-                            ]);
-                            echo Form::text('email', '', [
+                            ])!!}
+                        {!!Form::text('email', '', [
                                 'placeholder' => 'Your E-mail *',
                                 'class' => 'input-text',
                                 'type' => 'text',
-                            ]);
-                            echo Form::text('text', '', [
+                            ])!!}
+                        {!!Form::text('text', '', [
                                 'placeholder' => 'Your Message *',
                                 'class' => 'input-text text-area',
                                 'type' => 'text',
                                 'cols' => 0,
                                 'rows' => 0,
-                            ]);
-                            echo Form::submit('Send Message', [
+                            ])!!}
+                        {!!Form::submit('Send Message', [
                                 'class' => 'input-btn'
-                            ]);
-                        @endphp
+                            ])!!}
                         {!! Form::close() !!}
                     </div>
                 </div>
