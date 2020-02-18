@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,6 +25,21 @@ class PagesAddController extends Controller
 			if ($validator->fails()){
 				return redirect()->route('pagesAdd')->withErrors($validator)->withInput();
 			}
+			
+			if($request->hasFile('images')){
+				$file = $request->file('images');
+				$input['images'] = $file->getClientOriginalName();
+				$file->move(public_path() . '/assets/img/', $input['images']);
+			}
+			
+			$page = new Page();
+			$page->unguard();
+			$page->fill($input);
+			
+			if($page->save()){
+				redirect('admin')->with('status', 'Page added');
+			}
+			
 		}
 		
 		if(view()->exists('admin.pages_add')){
