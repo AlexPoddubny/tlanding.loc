@@ -32,12 +32,10 @@ class PagesAddController extends Controller
 				$file->move(public_path() . '/assets/img/', $input['images']);
 			}
 			
-			$page = new Page();
-			$page->unguard();
-			$page->fill($input);
+			$page = new Page($input);
 			
 			if($page->save()){
-				return redirect('admin')->with('status', 'Page added');
+				return redirect()->route('pages')->with('status', 'Page added');
 			}
 			
 		}
